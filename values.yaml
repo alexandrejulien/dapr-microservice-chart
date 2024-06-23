@@ -1,16 +1,25 @@
-distributedApplicationName: myapp # Name of your distributed application
+# -- Name of your distributed application
+distributedApplicationName: myapp
 
 microservice:
-  name: my-microservice # Microservice's name
-  image: mcr.microsoft.com/dotnet/samples:aspnetapp # Microservice's image
-  imagePullPolicy: Always # Image pull policy
-  appPort: 8080 # Microservice's application HTTP(s) port (80, 443)
+  # -- Microservice's name
+  name: my-microservice
+  # -- Microservice's image
+  image: mcr.microsoft.com/dotnet/samples:aspnetapp
+  # -- Image pull policy
+  imagePullPolicy: Always
+  # -- Microservice's application HTTP(s) port (80, 443)
+  appPort: 8080
 
-env: # Environment variables
-  secretsBinding: # Secret variables binding ENVIRONMENT_VARIABLE = Key in Kubernetes Secret
+# -- Environment variables
+env:
+  # -- Secret variables binding ENVIRONMENT_VARIABLE = Key in Kubernetes Secret
+  secretsBinding:
 
-deployment: # Deployment configuration
-  replicas: 1 # Number of deployment replicas
+# -- Deployment configuration
+deployment:
+  # -- Number of deployment replicas
+  replicas: 1
 
 dapr:
   enabled: false
@@ -18,34 +27,55 @@ dapr:
   config: dapr-config
   maxRequestSize: "100" # Http max request size (in Mb)
 
+# -- Secrets configuration
 secrets:
+  # -- Enable secrets
   enable: false
 
-secretKeys: # Secret keys variables
-  kubernetes-secret: socle-secrets #Kubernetes secret source
+# -- Secret keys variables
+secretKeys:
+  # -- Kubernetes secret source
+  kubernetes-secret: socle-secrets
 
-healthCheck: # Health check
-  probePath: "/" # Probe URL Path
+# -- Health check
+healthCheck:
+  # -- Probe URL Path
+  probePath: "/"
 
-resources: # Pod resources variables
+# -- Pod resources variables
+resources:
   bestEffort: "false"
   requests:
-    cpu: "50m" # Request cpu size (mCores)
-    memory: "256Mi" # Request memory size (Mi)
+    # -- Request cpu size (mCores)
+    cpu: "50m"
+    # -- Request memory size (Mi)
+    memory: "256Mi"
   limits:
-    cpu: "1000m" # Limits cpu size (mCores)
-    memory: "2048Mi" # Limits memory size (Mi)
+    # -- Limits cpu size (mCores)
+    cpu: "1000m"
+    # -- Limits memory size (Mi)
+    memory: "2048Mi"
   dapr:
     requests:
-      cpu: "50m" # Request dapr sidecar cpu size (mCores)
-      memory: "100Mi" # Request dapr memory size (Mi)
+      # -- Request dapr sidecar cpu size (mCores)
+      cpu: "50m"
+      # -- Request dapr memory size (Mi)
+      memory: "100Mi"
     limits:
-      cpu: "300m" # Limits dapr sidecar cpu size (mCores)
-      memory: "1024Mi" # Limits dapr sidecar memory size (Mi)
+      # -- Limits dapr sidecar cpu size (mCores)
+      cpu: "300m"
+      # -- Limits dapr sidecar memory size (Mi)
+      memory: "1024Mi"
 
-scaling: # Scaling options
-  mode: "hpa" # Pod scaling mode (hpa)
-  targetCPUScale: "1300" # target CPU for horizontal pod autoscaling
-  targetMemoryScale: "1000" # target memory for horizontal pod autoscaling
-  minReplicas: "1" # minimum replicas in horizontal pod autoscaling
-  maxReplicas: "5" # maximum replicas in horizontal pod autoscaling
+# -- Scaling options
+scaling:
+  # -- Pod scaling mode (hpa)
+  mode: "hpa"
+  # -- target CPU for horizontal pod autoscaling
+  targetCPUScale: "1300"
+  # -- target memory for horizontal pod autoscaling
+  targetMemoryScale: "1000"
+  # -- minimum replicas in horizontal pod autoscaling
+  minReplicas: "1"
+  # -- maximum replicas in horizontal pod autoscaling
+  maxReplicas: "5"
