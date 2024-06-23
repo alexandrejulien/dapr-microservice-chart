@@ -1,0 +1,48 @@
+apiVersion: v2
+name: dapr-microservice-chart
+type: application
+version: 0.1.0
+appVersion: 0.1.0
+icon: https://peppermint.consulting/img/logo_peppermint_consulting.svg
+description: >
+  A microservice helm chart for distributed application with dapr.
+long_description: |
+
+ Charts features:
+  - Microservice deployment lifecycle (stateless)
+  - Pod requests / limits
+
+
+  ## Releases notes 
+
+  - 0.1.0 : First version deployment
+
+  ## Installation
+
+    ```console
+    helm chart pull dapr-microservice-chart
+    ```
+
+    ### Testing
+
+    ```console
+    $ make test
+    helm lint .
+    ==> Linting dapr-microservice-chart
+    Lint OK
+
+    1 chart(s) linted, no failures
+    ```
+
+keywords:
+- distributed-application
+- microservice
+- template
+- dapr
+- keda
+
+sources:
+ - https://github.com/alexandrejulien/dapr-microservice-chart
+
+maintainers:
+ - name: Alexandre Julien
