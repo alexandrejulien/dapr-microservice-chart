@@ -1,0 +1,51 @@
+distributedApplicationName: myapp # Name of your distributed application
+
+microservice:
+  name: my-microservice # Microservice's name
+  image: mcr.microsoft.com/dotnet/samples:aspnetapp # Microservice's image
+  imagePullPolicy: Always # Image pull policy
+  appPort: 8080 # Microservice's application HTTP(s) port (80, 443)
+
+env: # Environment variables
+  secretsBinding: # Secret variables binding ENVIRONMENT_VARIABLE = Key in Kubernetes Secret
+
+deployment: # Deployment configuration
+  replicas: 1 # Number of deployment replicas
+
+dapr:
+  enabled: false
+  # id: mymicroservice
+  config: dapr-config
+  maxRequestSize: "100" # Http max request size (in Mb)
+
+secrets:
+  enable: false
+
+secretKeys: # Secret keys variables
+  kubernetes-secret: socle-secrets #Kubernetes secret source
+
+healthCheck: # Health check
+  probePath: "/" # Probe URL Path
+
+resources: # Pod resources variables
+  bestEffort: "false"
+  requests:
+    cpu: "50m" # Request cpu size (mCores)
+    memory: "256Mi" # Request memory size (Mi)
+  limits:
+    cpu: "1000m" # Limits cpu size (mCores)
+    memory: "2048Mi" # Limits memory size (Mi)
+  dapr:
+    requests:
+      cpu: "50m" # Request dapr sidecar cpu size (mCores)
+      memory: "100Mi" # Request dapr memory size (Mi)
+    limits:
+      cpu: "300m" # Limits dapr sidecar cpu size (mCores)
+      memory: "1024Mi" # Limits dapr sidecar memory size (Mi)
+
+scaling: # Scaling options
+  mode: "hpa" # Pod scaling mode (hpa)
+  targetCPUScale: "1300" # target CPU for horizontal pod autoscaling
+  targetMemoryScale: "1000" # target memory for horizontal pod autoscaling
+  minReplicas: "1" # minimum replicas in horizontal pod autoscaling
+  maxReplicas: "5" # maximum replicas in horizontal pod autoscaling
